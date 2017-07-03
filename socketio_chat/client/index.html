@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SteinChat io</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+    <link rel="stylesheet" type="text/css" href="material.min.css"/>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div class="mdl-layout mdl-js-layout">
+    <header class="mdl-layout__header mdl-layout__header--scroll navHead">
+    <div class="mdl-layout__header-row">
+        <!-- Title -->
+        <span class="mdl-layout-title">Main Chat</span>
+        <!-- Add spacer, to align navigation to the right -->
+        <div class="mdl-layout-spacer"></div>
+    </div>
+    </header>
+    <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">Title</span>
+    <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" href="">Chatroom B</a>
+        <a class="mdl-navigation__link" href="">Chatroom C</a>
+    </nav>
+    </div>
+    <main class="mdl-layout__content">
+    <div class="page-content">
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--3-col-desktop">
+                Currently Online
+                <ul class="amOnline"></ul>
+                
+            </div>
+            <div class="mdl-cell mdl-cell--9-col-desktop">chats
+                <div class="mdl-grid chatArea">
+                    <div class="mdl-cell mdl-cell--12-col-desktop">
+                        <ul class="messages"></ul>
+                    </div>
+                </div>
+                <div class="mdl-grid">
+            <!--<div class="mdl-grid">-->
+                    <div class="mdl-textfield mdl-js-textfield mld-cell mdl-cell--8-col-desktop">
+                    <!--user name-->
+                            <form action="" class="userForm">
+                                <input class="mdl-textfield__input " type="text" id="un" placeholder="Type In A Username..." required>
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored submitBtn">Send</button>
+                            </form>
+                            <!--<div class="mdl-cell mdl-cell--2-col-desktop">
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored submitBtn">Send</button>
+                            </div>-->
+                    <!--chat form-->
+                        <form action="" class="chats">
+                        <!--<div class="mdl-grid">-->
+                        <!--<div class="mdl-textfield mdl-js-textfield mld-cell mdl-cell--8-col-desktop">-->
+                            <div class="flexThisShit">
+                            <input class="mdl-textfield__input " type="text" id="m" placeholder="Type A Message ...">
+                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored chatSubBtn">Send</button>
+                            </div>
+                        </form>
+                    <!--</div>-->
+                        <!--<div class="mdl-cell mdl-cell--2-col-desktop">
+                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored chatSubBtn">Send</button>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </main>
+</div>
+</body>
+</html>
