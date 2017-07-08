@@ -33,29 +33,29 @@
     <main class="mdl-layout__content">
     <div class="page-content">
         <div class="mdl-grid">
-            <div class="mdl-cell mdl-cell--3-col-desktop">
+            <div class="mdl-cell mdl-cell--12-col-desktop">
+                <form action="" class="userForm">
+                    <input class="mdl-textfield__input " type="text" id="un" placeholder="Type In A Username..." required>
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored submitBtn">Send</button>
+                </form>
+                <div class="nameTaken"></div>
+            </div>
+            <div class="leftCol mdl-cell mdl-cell--3-col-desktop">
                 Currently Online
                 <ul class="amOnline"></ul>
-                
             </div>
-            <div class="mdl-cell mdl-cell--9-col-desktop">chats
+            <div class="rightCol mdl-cell mdl-cell--9-col-desktop">chats
                 <div class="mdl-grid chatArea">
                     <div class="mdl-cell mdl-cell--12-col-desktop">
                         <ul class="messages"></ul>
                     </div>
                 </div>
                 <div class="mdl-grid">
-            <!--<div class="mdl-grid">-->
                     <div class="mdl-textfield mdl-js-textfield mld-cell mdl-cell--8-col-desktop">
-                    <!--user name-->
-                            <form action="" class="userForm">
+                            <!--<form action="" class="userForm">
                                 <input class="mdl-textfield__input " type="text" id="un" placeholder="Type In A Username..." required>
                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored submitBtn">Send</button>
-                            </form>
-                            <!--<div class="mdl-cell mdl-cell--2-col-desktop">
-                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored submitBtn">Send</button>
-                            </div>-->
-                    <!--chat form-->
+                            </form>-->
                         <form action="" class="chats">
                         <!--<div class="mdl-grid">-->
                         <!--<div class="mdl-textfield mdl-js-textfield mld-cell mdl-cell--8-col-desktop">-->
@@ -64,10 +64,6 @@
                             <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored chatSubBtn">Send</button>
                             </div>
                         </form>
-                    <!--</div>-->
-                        <!--<div class="mdl-cell mdl-cell--2-col-desktop">
-                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored chatSubBtn">Send</button>
-                        </div>-->
                     </div>
                 </div>
             </div>

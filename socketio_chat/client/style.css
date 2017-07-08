@@ -23,11 +23,18 @@
 #un{
     width: 75%;
 }
+.leftCol, .rightCol{
+    display:none;
+}
 .userForm{
+    display: flex;
+    justify-content: center;
+}
+/*.userForm{
     width:70%;
     position: fixed;
     bottom:0;
-}
+}*/
 .messages{
     list-style-type: none;
     margin: 0;
