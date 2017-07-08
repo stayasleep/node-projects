@@ -4,7 +4,6 @@ let socket = io();
 console.log('sock',socket);
 
 function initialize(){
-
     $('.submitBtn').on('click', pickUsername);
     $('.chatSubBtn').on('click', sendMsg);
     $('#m').on('value',function(){
@@ -20,8 +19,9 @@ function initialize(){
         console.log('is typing recd from server',data);
     })
 
-    //event listener for determing who joins our chat room
+    //event listener updating our list of who is online currently
     socket.on("is online",function(data){
+
         console.log('who is online',data);
         $('.amOnline').empty();
         for(j=0;j<data.length;j++){
@@ -29,12 +29,18 @@ function initialize(){
         }
     })
     socket.on("name taken",function(data){
+        if(socket.id === data){
         console.log("TAKKKKENNN",data);
         $('.nameTaken').css("display","flex").css("justify-content","center").css("margin","2em");
         $('.nameTaken').html("<div>Error: Name is already in use, please pick another</div>");
+        }
     })
+
+    //listener affects everyone once somebody closes/refreshes the page
     socket.on("disconnect",(data)=>{
-        
+        console.log('disc',data);
+       //affects everyone
+       $('.messages').append($('<li>').text("A user has left the chatroom"));
     })
 };
 
@@ -43,6 +49,7 @@ function pickUsername(){
     console.log("username picked",userN);
     socket.emit("new user",userN,function(data){
         if(data){
+            console.log('what is this cb',data);
             $('.userForm').hide();
             $('.chats').css('display','block');
         }

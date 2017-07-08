@@ -37,12 +37,12 @@ io.on('connection',function(socket){
         // console.log('callback',callback);
         console.log('data',data);
         socket.username = data;
-
         if(users.indexOf(socket.username)===-1){
              users.push(socket.username);
             io.emit("is online", users);
         }else{
-            let msg = "name is taken";
+            let msg = socket.id;
+            // let msg = "name is taken";
             io.emit("name taken", msg);
         }
         console.log(socket.username);
