@@ -1,0 +1,61 @@
+/*.mdl-button--colored{
+    background: black
+}*/
+.chats{
+    width: 70%;
+    position: fixed;
+    bottom:0;
+    display: none;
+}
+.flexThis{
+    display: flex;
+    flex-wrap: wrap;
+}
+.navHead{
+    display: flex !important;
+}
+.chatSubBtn{
+    position: sticky !important;
+}
+#m{
+    width: 75%;
+}
+#un{
+    width: 75%;
+}
+.leftCol, .rightCol{
+    display:none;
+}
+.userForm{
+    display: flex;
+    justify-content: center;
+}
+/*.userForm{
+    width:70%;
+    position: fixed;
+    bottom:0;
+}*/
+.messages{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+};
+.messages li{
+    padding: 5px 10px;
+};
+.messages li:nth-child(odd){
+    background: #eee;
+};
+/*#m{
+    width:90%;
+}
+form button{
+   max-width: 9%; 
+}*/
+
+.mdl-button--raised.mdl-button--colored{
+    background: #212121;
+}
+.mdl-button--raised.mdl-button--colored:hover{
+    background: #484848;
+}

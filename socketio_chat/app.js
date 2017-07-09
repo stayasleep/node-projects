@@ -7,7 +7,7 @@ const io = require("socket.io")(server);
 
 //globals for now...could be database later on
 let users =[];
-let connection =[];
+let connections =[];
 
 //create routing for home page
 app.use(express.static(path.join(__dirname,'client')));
@@ -25,10 +25,7 @@ io.on('connection',function(socket){
     //from server to client. if we want message to only be seen on the
     //other screen, io.broadcast.emit('chat message', msg), wont appear on your
     //screen
-    // socket.on('chat message', function(msg){
-    //     io.emit('chat message', msg);
-    //     console.log('message', socket.username, socket.id,msg);
-    // });
+ 
     socket.on('chat message', function(data){
         //msg all other users
         io.emit('chat message',{msg:data, user: socket.username});
@@ -40,8 +37,14 @@ io.on('connection',function(socket){
         // console.log('callback',callback);
         console.log('data',data);
         socket.username = data;
-        users.push(socket.username);
-        io.emit("is online", users);
+        if(users.indexOf(socket.username)===-1){
+             users.push(socket.username);
+            io.emit("is online", users);
+        }else{
+            let msg = socket.id;
+            // let msg = "name is taken";
+            io.emit("name taken", msg);
+        }
         console.log(socket.username);
         console.log('user connected atm %s', users.length);
     });
