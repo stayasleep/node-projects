@@ -26,15 +26,18 @@
 .leftCol, .rightCol{
     display:none;
 }
+.rightCol{
+    height:100%;
+}
 .userForm{
     display: flex;
     justify-content: center;
 }
-/*.userForm{
-    width:70%;
-    position: fixed;
-    bottom:0;
-}*/
+.chatArea{
+    height: 70vh;
+    border: 1px solid black;
+    overflow-y: scroll;
+}
 .messages{
     list-style-type: none;
     margin: 0;
@@ -46,12 +49,7 @@
 .messages li:nth-child(odd){
     background: #eee;
 };
-/*#m{
-    width:90%;
-}
-form button{
-   max-width: 9%; 
-}*/
+
 
 .mdl-button--raised.mdl-button--colored{
     background: #212121;

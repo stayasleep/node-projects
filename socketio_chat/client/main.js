@@ -14,6 +14,7 @@ function initialize(){
     socket.on("chat message",function(data){
         console.log("data rec'd from server",data);
         $('.messages').append($('<li>').text(data.user+": "+data.msg));
+        $('.chatArea').scrollTop($('.chatArea')[0].scrollHeight);
     })
     socket.on('typing',function(data){
         console.log('is typing recd from server',data);
@@ -28,6 +29,8 @@ function initialize(){
             $('.amOnline').append($('<li>').text(data[j]).addClass(`${j}`));
         }
     })
+
+    //if the name is taken, notify only that socket and not everyone
     socket.on("name taken",function(data){
         if(socket.id === data){
         console.log("TAKKKKENNN",data);
@@ -50,7 +53,10 @@ function pickUsername(){
     socket.emit("new user",userN,function(data){
         if(data){
             console.log('what is this cb',data);
-            $('.userForm').hide();
+            $('.userForm').css("display","none");
+            $('.greet').css("display","none");
+            $('.leftCol').css("display","block");
+            $('.rightCol').css("display","block");
             $('.chats').css('display','block');
         }
     })
@@ -58,9 +64,12 @@ function pickUsername(){
     return false;
 }
 
+//check for blank spaces and white spaces maybe?
 function sendMsg(){
     let sentMsg = $('#m').val();
-    socket.emit("chat message",sentMsg);
-    $('#m').val("");
+    if(sentMsg!==""){
+        socket.emit("chat message",sentMsg);
+        $('#m').val("");
+    }
     return false;
 }
