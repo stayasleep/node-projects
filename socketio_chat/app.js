@@ -27,8 +27,9 @@ io.on('connection',function(socket){
     //screen
  
     socket.on('chat message', function(data){
+        console.log('this msg is coming in hot',data);
         //msg all other users
-        io.emit('chat message',{msg:data, user: socket.username});
+        io.emit('chat message',{msg:data.msg, time: data.time ,user: socket.username});
     });
 
     //new user
@@ -62,7 +63,7 @@ io.on('connection',function(socket){
         connections.splice(connections.indexOf(socket),1);
         users.splice(socketDC,1);
         console.log('array position at ',socketDC);
-        io.emit("disconnect",socketDC);
+        io.emit("disconnect",socket.username);
         console.log('Disconnected: %s users remaining on',connections.length)
 
     });
