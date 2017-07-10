@@ -13,7 +13,7 @@ function initialize(){
     // listen for server response when a chat msg comes in
     socket.on("chat message",function(data){
         console.log("data rec'd from server",data);
-        $('.messages').append($('<li>').text(data.user+": "+data.msg));
+        $('.messages').append($('<li>').text(data.user+" ("+data.time+"): "+data.msg));
         $('.chatArea').scrollTop($('.chatArea')[0].scrollHeight);
     })
     socket.on('typing',function(data){
@@ -42,8 +42,9 @@ function initialize(){
     //listener affects everyone once somebody closes/refreshes the page
     socket.on("disconnect",(data)=>{
         console.log('disc',data);
+
        //affects everyone
-       $('.messages').append($('<li>').text("A user has left the chatroom"));
+       $('.messages').append($('<li>').text(`---${data} has left the chatroom---`));
     })
 };
 
@@ -66,9 +67,12 @@ function pickUsername(){
 
 //check for blank spaces and white spaces maybe?
 function sendMsg(){
+    let d = new Date();
+    d=d.toLocaleTimeString();
     let sentMsg = $('#m').val();
+    let msgObj = {time:d, msg: sentMsg};
     if(sentMsg!==""){
-        socket.emit("chat message",sentMsg);
+        socket.emit("chat message",msgObj);
         $('#m').val("");
     }
     return false;
