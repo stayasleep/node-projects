@@ -1,0 +1,14 @@
+{
+  "name": "loginapp",
+  "version": "1.0.0",
+  "description": "simply node.js login with passport local strategy and handlebars",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Brian Bernstein",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
+}
