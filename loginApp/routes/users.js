@@ -1,9 +1,15 @@
 const express = require('express');
 const router =express.Router();
 const User = require('../models/user');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+
 //Register Route
 router.get('/register',(req,res)=>{
     res.render('register');
+});
+router.get('/login',function(req,res){
+    res.render('login');
 });
 
 //Register user
@@ -44,14 +50,53 @@ router.post('/register',(req,res)=>{
         });
 
         req.flash('success_msg','You are registed and can now login');
-
         res.redirect('/users/login');
     }
 });
 
-//Login Route
-router.get('/login',(req,res)=>{
-    res.render('login');
+//from passport github...does 2 things
+//gets the username [matches what you put in] and then validates pw
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+      User.getUserByUsername(username,(err,user)=>{
+          if (err) throw err;
+          //if not a match
+          if(!user){
+              return done(null,false,{message:"Unknown User"});
+          }
+          User.comparePassword(password,user.password,(err,isMatch)=>{
+              if(err) throw err;
+              if(isMatch){
+                  return done(null,user);
+                
+              }else{
+                  return done(null,false,{message:"Invalid password"});
+              }
+          });
+      });
+  }));
+
+passport.serializeUser(function(user,done){
+    done(null,user.id);
 });
 
+passport.deserializeUser(function(id,done){
+    User.getUserById(id,function(err,user){
+        done(err,user);
+    });
+});
+
+
+//Login Route w. local strategy for our local db
+router.post('/login',passport.authenticate('local',{successRedirect:'/',failureRedirect:"/users/login", failureFlash: true}),
+(req,res)=>{
+    res.redirect('/');
+
+});
+router.get('/logout',(req,res)=>{
+    req.logout();
+    req.flash('success_msg','You have logged out');
+
+    res.redirect('/users/login');
+});
 module.exports = router;
