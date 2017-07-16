@@ -11,8 +11,6 @@ const passport=require('passport');
 const LocalStrategy=require('passport-local').Strategy;
 const mongo = require('mongodb');
 const mongoose = require('mongoose');
-// //connect to the mongoose db once its up
-// //this took me too long, make it in a diff route enxt time
 
 // //Set up routes
 const routes = require('./routes/index');
